@@ -165,6 +165,25 @@ a:hover { text-decoration: underline; }
 
 .about-grid dd { margin: 0; font-size: 0.95rem; }
 
+/* ---- Academic service -------------------------------------------------- */
+
+.service-grid {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 0.5rem 1.25rem;
+	margin: 0;
+}
+
+.service-grid dt {
+	font-weight: 600;
+	font-size: 0.86rem;
+	color: var(--ink-soft);
+	padding-top: 0.15rem;
+}
+
+.service-grid dd { margin: 0; font-size: 0.93rem; line-height: 1.7; }
+.service-grid dd + dt { margin-top: 0.55rem; }
+
 /* ---- Publications --------------------------------------------------- */
 
 .bib-note { font-size: 0.88rem; color: var(--ink-soft); }
@@ -301,6 +320,7 @@ a:hover { text-decoration: underline; }
 @media (max-width: 640px) {
 	.header-inner { flex-direction: column; align-items: flex-start; }
 	.site-nav { width: 100%; }
-	.about-grid { grid-template-columns: 1fr; }
+	.about-grid, .service-grid { grid-template-columns: 1fr; }
 	.about-grid dt { margin-top: 0.5rem; }
+	.service-grid dt { margin-top: 0.5rem; }
 }
