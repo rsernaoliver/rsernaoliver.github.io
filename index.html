@@ -8,6 +8,18 @@
 <meta name="color-scheme" content="light dark" />
 <link rel="stylesheet" href="default.css" />
 <script src="site.js" defer="defer"></script>
+<script>
+/* Theme bootstrap — runs before first paint to avoid a flash: applies the
+   stored preference ("light"/"dark") or falls back to the OS preference
+   (handled by the CSS media query when data-theme is unset). */
+(function () {
+	try { localStorage.setItem("theme-test", "x"); } catch (e) { return; }
+	var t = localStorage.getItem("theme");
+	if (t === "light" || t === "dark") {
+		document.documentElement.setAttribute("data-theme", t);
+	}
+})();
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -22,6 +34,7 @@
 			<a href="#community">Service</a>
 			<a href="#publications">Publications</a>
 			<a href="#links">Links</a>
+			<button type="button" id="theme-toggle" aria-label="Color theme: auto. Click to switch to light." title="Theme: auto">&#9790;</button>
 		</nav>
 	</div>
 </header>

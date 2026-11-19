@@ -247,8 +247,51 @@ a:hover { text-decoration: underline; }
 	#publications .award { color: #e0b05a; }
 }
 
-/* Hidden by category filter */
-.cat-hidden { display: none; }
+/* Manual dark palette: set by the theme toggle via [data-theme="dark"],
+   overriding the automatic media-query variant. */
+[data-theme="dark"] {
+	--bg: #1b1d22;
+	--surface: #23262c;
+	--ink: #e8e6e1;
+	--ink-soft: #a3aab4;
+	--accent: #8f9cf0;
+	--rule: #3a3e46;
+	--shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] #publications .award { color: #e0b05a; }
+
+/* Forced light: wins over the automatic dark media query when the user
+   manually picks light on a dark-preference system (later in source order,
+   equal specificity). */
+[data-theme="light"] {
+	--bg: #fdfdfc;
+	--surface: #f4f4f2;
+	--ink: #21242a;
+	--ink-soft: #5b6470;
+	--accent: #4a5fd0;
+	--accent-ink: #ffffff;
+	--rule: #dcdcd8;
+	--link: var(--accent);
+	--shadow: 0 1px 2px rgba(20, 24, 32, 0.06), 0 4px 14px rgba(20, 24, 32, 0.05);
+}
+
+[data-theme="light"] #publications .award { color: #b0770a; }
+
+/* Theme toggle (styled as a sibling of the nav pills) */
+.site-nav #theme-toggle {
+	display: inline-block;
+	padding: 0.3rem 0.7rem;
+	border: 1px solid transparent;
+	border-radius: 999px;
+	font-size: 0.9rem;
+	line-height: 1;
+	background: transparent;
+	color: var(--ink-soft);
+	cursor: pointer;
+	transition: color 0.15s ease, background-color 0.15s ease;
+}
+.site-nav #theme-toggle:hover { color: var(--ink); background: var(--surface); }
 
 /* ---- Links section --------------------------------------------------- */
 

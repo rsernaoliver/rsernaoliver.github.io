@@ -84,4 +84,47 @@
 			totop.classList.toggle("visible", window.scrollY > 600);
 		}, { passive: true });
 	}
+	/* ---- Theme toggle: auto → light → dark → auto -------------------- */
+	/* Auto (attribute removed) follows the OS via the CSS media query.
+	   The inline <head> bootstrap already applied any stored choice, so
+	   there is no flash; here we only cycle and persist the next state. */
+	var themeBtn = document.getElementById("theme-toggle");
+
+	function themeState() {
+		var a = document.documentElement.getAttribute("data-theme");
+		return a === "light" || a === "dark" ? a : "auto";
+	}
+
+	function applyTheme(next) {
+		var root = document.documentElement;
+		if (next === "auto") {
+			root.removeAttribute("data-theme");
+			try { localStorage.removeItem("theme"); } catch (e) {}
+		} else {
+			root.setAttribute("data-theme", next);
+			try { localStorage.setItem("theme", next); } catch (e) {}
+		}
+		paintThemeBtn();
+	}
+
+	/* Icon + label reflect the *current* state; tooltip names the next. */
+	function paintThemeBtn() {
+		if (!themeBtn) return;
+		var s = themeState();
+		var glyphs = { auto: "\u2699", light: "\u263C", dark: "\u263E" };
+		var nexts = { auto: "light", light: "dark", dark: "auto" };
+		themeBtn.innerHTML = glyphs[s];
+		themeBtn.title = "Theme: " + s + " (click for " + nexts[s] + ")";
+		themeBtn.setAttribute(
+			"aria-label",
+			"Color theme: " + s + ". Activate to switch to " + nexts[s] + "."
+		);
+	}
+
+	if (themeBtn) {
+		paintThemeBtn();
+		themeBtn.addEventListener("click", function () {
+			applyTheme({ auto: "light", light: "dark", dark: "auto" }[themeState()]);
+		});
+	}
 })();
