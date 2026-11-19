@@ -42,14 +42,14 @@ a:hover {
 #header h1 {
 	margin: 0em;
 	padding: 0em;
-	color: #FFFFFF;
+	color: #333333;
 }
 
 #header h2 {
 	margin: 0em;
 	padding: 0em;
 	font-size: 1em;
-	color: #FFFFFF;
+	color: #333333;
 }
 
 /** MENU */
@@ -68,11 +68,7 @@ a:hover {
 	line-height: 3em;
 }
 
-#menu li {
-}
 
-#menu a {
-}
 
 /** CONTENT */
 
@@ -94,5 +90,16 @@ a:hover {
 	margin: 0em;
 	padding: 0em;
 	font-weight: bold;
-	color: #FFFFFF;
+	color: #333333;
+}
+/** RESPONSIVE */
+@media (max-width: 640px) {
+	#menu, #content {
+		float: none;
+		width: auto;
+	}
+}
+
+#footer .hits {
+	text-align: center;
 }
