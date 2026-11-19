@@ -27,6 +27,12 @@
 		var pos = window.scrollY + 120;
 		var current = sections[0];
 		sections.forEach(function (s) { if (s.offsetTop <= pos) current = s; });
+		/* Short last section: its top may never cross the activation line
+		   before the page bottoms out — highlight it at (near) max scroll. */
+		var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+		if (window.innerHeight > 0 && window.scrollY >= maxScroll - 2) {
+			current = sections[sections.length - 1];
+		}
 		navLinks.forEach(function (a) {
 			a.classList.toggle("current", current && a.getAttribute("href") === "#" + current.id);
 		});
